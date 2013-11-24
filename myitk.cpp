@@ -11,13 +11,13 @@ int main( int argc, char *argv[]  )
 {
   itk::NiftiImageIOFactory::RegisterOneFactory();     
   typedef itk::Image< float , 2 > ImageType ;
-  std::string fn = std::string( argv[1] );
-  if ( fn.length() < 3 ) 
+  if ( argc < 2 ) 
     {
     std::cout << "Usage: " << std::endl;
     std::cout << argv[0] << " filename.nii.gz " << std::endl;
     return EXIT_FAILURE;
     }
+  std::string fn = std::string( argv[1] );
   itk::ImageIOBase::Pointer iobase = 
       itk::ImageIOFactory::CreateImageIO( fn.c_str() , itk::ImageIOFactory::ReadMode );
   if ( iobase.IsNull() )
